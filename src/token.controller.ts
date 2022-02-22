@@ -1,11 +1,15 @@
 import { Body, Controller, Get, HttpCode, Param, Post, Redirect } from "@nestjs/common";
 import { CreateTokenDto } from "./create-token.dto";
+import { Token } from "./token.interface";
+import { TokenService } from "./token.service";
 
 @Controller('tokens')
 export class TokenController {
+    constructor(private tokenService: TokenService){}
+
     @Get()
-    findAll(): string {
-        return 'All Tokens Returned Successfully';
+    async findAll(): Promise<Token[]> {
+        return this.tokenService.findAll();
     }
 
     @Get('youtube')
