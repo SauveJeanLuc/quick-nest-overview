@@ -1,4 +1,5 @@
-import { Controller, Get, HttpCode, Param, Post, Redirect } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, Param, Post, Redirect } from "@nestjs/common";
+import { CreateTokenDto } from "./create-token.dto";
 
 @Controller('tokens')
 export class TokenController {
@@ -15,8 +16,8 @@ export class TokenController {
 
     @Post()
     @HttpCode(204)
-    create(): string {
-        return 'Token created successfully';
+    create(@Body() dto: CreateTokenDto): string {
+        return `Token with value ${dto.value} created successfully`;
     }
 
     @Get(':id')
