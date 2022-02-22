@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, Post, Redirect } from "@nestjs/common";
+import { Controller, Get, HttpCode, Param, Post, Redirect } from "@nestjs/common";
 
 @Controller('tokens')
 export class TokenController {
@@ -8,7 +8,7 @@ export class TokenController {
     }
 
     @Get('youtube')
-    @Redirect('https://www.youtube.com')
+    @Redirect('https://www.youtube.com', 200)
     testYoutubeToken(): object {
         return { url: 'https://www.youtube.com'};
     }
@@ -17,5 +17,15 @@ export class TokenController {
     @HttpCode(204)
     create(): string {
         return 'Token created successfully';
+    }
+
+    @Get(':id')
+    findOne(@Param() params): string {
+        return `You have entered text: ${params.id}`;
+    }
+
+    @Get(':id')
+    findOneParam(@Param('id') id:string): string {
+        return `You have entered text: ${id}`;
     }
 }
