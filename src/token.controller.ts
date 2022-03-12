@@ -13,7 +13,7 @@ export class TokenController {
     }
 
     @Get('youtube')
-    @Redirect('https://www.youtube.com', 200)
+    @Redirect('https://www.google.com', 200)
     testYoutubeToken(): object {
         return { url: 'https://www.youtube.com'};
     }
